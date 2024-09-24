@@ -2,6 +2,7 @@ import { Box, Button, Heading, HStack, IconButton, Image, Input, Modal, ModalBod
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useProductStore } from '../store/product';
 import { useState } from 'react';
+// import { IoCartOutline } from "react-icons/io5";
 
 const ProductCard = ({ product }) => {
 
@@ -61,6 +62,10 @@ const ProductCard = ({ product }) => {
         }
     };
 
+	const handleCartClick = (id) => {
+		console.log("Clicked: ", id);
+	}
+
 
   return (
     <Box
@@ -89,6 +94,10 @@ const ProductCard = ({ product }) => {
                         onClick={() => handleDeleteProduct(product._id)}
 						colorScheme='red'
 					/>
+					<Button colorScheme='teal' size='md' ml="9.2rem" onClick={() => handleCartClick(product._id)}>Add to cart</Button>
+					{/* <IoCartOutline /> */}
+					
+
 				</HStack>
 			</Box>
 
