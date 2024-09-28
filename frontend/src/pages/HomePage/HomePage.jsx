@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   Container,
   Flex,
   HStack,
@@ -10,9 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useProductStore } from "../../store/product";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard";
 import "./HomePage.css"
+import { CartContext } from "../../context/CartContextProvider";
 
 const HomePage = () => {
   const { fetchProducts, products } = useProductStore();
@@ -50,11 +52,15 @@ const HomePage = () => {
     }
   }
 
+  const { cartItems } = useContext(CartContext);
+
+
   console.log("products: ", products);
   return (
     <>
       <Container maxW="container.xl" py={12}>
         <VStack spacing={8}>
+          <Flex>
           <Text
             fontSize={"30"}
             fontWeight={"bold"}
@@ -64,6 +70,18 @@ const HomePage = () => {
           >
             Current Products 🚀
           </Text>
+          <Text
+            fontSize={"30"}
+            fontWeight={"bold"}
+            bgGradient={"linear(to-r, cyan.400, blue.500)"}
+            bgClip={"text"}
+            textAlign={"center"}
+          >
+            <Link to={"/cart"}>
+           Cart: {cartItems.length}
+            </Link>
+          </Text>
+          </Flex>
 
           <SimpleGrid
             columns={{

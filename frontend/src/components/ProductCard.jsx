@@ -1,7 +1,8 @@
-import { Box, Button, Heading, HStack, IconButton, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useColorModeValue, useDisclosure, useToast, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, HStack, IconButton, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useColorModeValue, useDisclosure, useToast, VStack } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useProductStore } from '../store/product';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { CartContext } from '../context/CartContextProvider';
 // import { IoCartOutline } from "react-icons/io5";
 
 const ProductCard = ({ product }) => {
@@ -62,12 +63,11 @@ const ProductCard = ({ product }) => {
         }
     };
 
-	const handleCartClick = (id) => {
-		console.log("Clicked: ", id);
-	}
+	const { addToCart } = useContext(CartContext)
 
 
   return (
+	<>
     <Box
 			shadow='lg'
 			rounded='lg'
@@ -93,12 +93,12 @@ const ProductCard = ({ product }) => {
 						icon={<DeleteIcon />}
                         onClick={() => handleDeleteProduct(product._id)}
 						colorScheme='red'
-					/>
-					<Button colorScheme='teal' size='md' ml="9.2rem" onClick={() => handleCartClick(product._id)}>Add to cart</Button>
+						/>
+				
+				<Button colorScheme='teal' size='md' onClick={() => addToCart(product)}>Add to cart</Button>	
 					{/* <IoCartOutline /> */}
-					
-
 				</HStack>
+
 			</Box>
 
             <Modal isOpen={isOpen} onClose={onClose}>
@@ -145,8 +145,8 @@ const ProductCard = ({ product }) => {
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
-
 		</Box>
+	</>
   )
 }
 

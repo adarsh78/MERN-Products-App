@@ -13,6 +13,7 @@
 
 .pagination-disabled {
     visibility: hidden;
+    /* display: none; */
 }
 
 .pagination-selected {
