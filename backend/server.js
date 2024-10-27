@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import path from "path";
 import { connectDB } from "./config/db.js";
 import productRoutes from "./routes/product.route.js";
-import cors from "cors"
 
 dotenv.config();
 
@@ -14,7 +13,6 @@ const __dirname = path.resolve();
 
 app.use(express.json());   // converts the json string from frontend to JS object
 
-app.use(cors());
 
 app.get("/", (req, res) => {
     res.send("Hello Express");
