@@ -9,7 +9,7 @@ export const useProductStore = create((set) => ({
             return { success: false, message: "Please fill all the fields." }
         }
 
-        const res  = await fetch("https://mern-products-app-api.vercel.app/api/products", {
+        const res  = await fetch("http://localhost:5000/api/products", {
             method: "POST",
             headers: {
                 "content-Type": "application/json",
@@ -23,13 +23,13 @@ export const useProductStore = create((set) => ({
     },
 
     fetchProducts: async () => {
-        const res = await fetch("https://mern-products-app-api.vercel.app/api/products");
+        const res = await fetch("http://localhost:5000/api/products");
         const data = await res.json();
         set({ products: data.data })
     },
 
     deleteProduct: async (pid) => {
-        const res = await fetch(`https://mern-products-app-api.vercel.app/api/products/${pid}`, {
+        const res = await fetch(`http://localhost:5000/api/products/${pid}`, {
             method: "DELETE",
         });
 
@@ -42,7 +42,7 @@ export const useProductStore = create((set) => ({
     },
 
     updateProduct: async (pid, updatedProduct) => {
-        const res = await fetch(`https://mern-products-app-api.vercel.app/api/products/${pid}` , {
+        const res = await fetch(`http://localhost:5000/api/products/${pid}` , {
             method: "PUT",  
             headers: {
                "content-Type": "application/json"
