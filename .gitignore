@@ -33,3 +33,4 @@ dist-ssr
 /frontend/dist
 
 .env
+/backend/.env
