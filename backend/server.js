@@ -13,10 +13,6 @@ const __dirname = path.resolve();
 
 app.use(express.json());   // converts the json string from frontend to JS object
 
-
-app.get("/", (req, res) => {
-    res.send("Hello Express");
-})
 app.use("/api/products", productRoutes);
 
 if(process.env.NODE_ENV === "production") {
